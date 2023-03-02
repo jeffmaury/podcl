@@ -4,12 +4,16 @@ import (
 	"context"
 	"fmt"
 	"github.com/containers/common/pkg/config"
+	"github.com/containers/podman/v4/cmd/podman/registry"
 	"github.com/containers/podman/v4/pkg/bindings"
 	"github.com/containers/podman/v4/pkg/bindings/images"
 )
 
 func main() {
-	conf, err := config.ReadCustomConfig()
+	reg := registry.PodmanConfig()
+	fmt.Println("URI:", reg.URI, " identity:", reg.Identity)
+
+	conf, err := config.NewConfig("")
 	if err != nil {
 		panic(err)
 	}
